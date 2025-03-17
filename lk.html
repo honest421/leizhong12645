@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>实时时间显示</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+        }
+
+        #time-container {
+            background-color: #333;
+            padding: 2rem 4rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #time {
+            color: #fff;
+            font-size: 4rem;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="time-container">
+        <div id="time"></div>
+    </div>
+
+    <script>
+        // 获取时间显示元素
+        const timeElement = document.getElementById('time');
+
+        // 更新时间函数
+        function updateTime() {
+            const now = new Date();
+            
+            // 格式化时间（补零操作）
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            // 显示时间（格式：HH:MM:SS）
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // 初始立即执行一次
+        updateTime();
+        
+        // 每秒更新一次
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
